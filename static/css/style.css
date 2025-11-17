@@ -685,49 +685,50 @@
             .dashboard-content {
                 padding: 1.5rem;
             }
-            
+    
             .form-row {
                 grid-template-columns: 1fr;
             }
-            
+    
             .page-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
             }
-            
+    
             .page-actions {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
             }
 
+            .profile-dropdown {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                width: 250px;
+                z-index: 1000;
+                display: none;
+                overflow: hidden;
+            }
 
+            .profile-dropdown.show {
+                display: block;
+                animation: fadeIn 0.3s;
+            }
+        }
 
-	.profile-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 250px;
-            z-index: 1000;
-            display: none;
-            overflow: hidden;
-        }
-        
-        .profile-dropdown.show {
-            display: block;
-            animation: fadeIn 0.3s;
-        }
-        
+        /* move keyframes OUTSIDE media query */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-<<<<<<< HEAD
+            from { 
+                opacity: 0; 
+                transform: translateY(-10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
-    }
-=======
-        }
->>>>>>> 03317c95791a299faae024f98d29d5699560946f
