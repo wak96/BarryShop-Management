@@ -1,18 +1,4 @@
-        :root {
-            --primary: #6C4AB6;
-            --primary-light: #8D72E1;
-            --accent: #FF8B13;
-            --light: #F5F5F5;
-            --gray: #E0E0E0;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            margin: 0;
-            padding: 0;
-        }
-        
+    
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -31,25 +17,28 @@
             color: var(--primary);
         }
         
-        .customer-search {
+        .customers-search {
             display: flex;
             gap: 15px;
             margin-bottom: 20px;
         }
         
-        .search-bar {
+
+        .search-box {
             position: relative;
             flex-grow: 1;
         }
         
-        .search-bar input {
+
+        .search-box input {
             width: 100%;
             padding: 10px 15px 10px 40px;
             border: 1px solid var(--gray);
             border-radius: 5px;
         }
         
-        .search-bar i {
+
+        .search-box i {
             position: absolute;
             left: 15px;
             top: 50%;
