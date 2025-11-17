@@ -725,5 +725,9 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
+<<<<<<< HEAD
         }
     }
+=======
+        }
+>>>>>>> 03317c95791a299faae024f98d29d5699560946f
