@@ -1,17 +1,4 @@
-        :root {
-            --primary: #6C4AB6;
-            --primary-light: #8D72E1;
-            --accent: #FF8B13;
-            --light: #F5F5F5;
-            --gray: #E0E0E0;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            margin: 0;
-            padding: 0;
-        }
+
         
         .container {
             max-width: 1200px;
