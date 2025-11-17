@@ -1,3 +1,4 @@
+    .html-body{
         :root {
             --primary: #6C4AB6;
             --primary-light: #8D72E1;
@@ -37,19 +38,19 @@
             margin-bottom: 20px;
         }
         
-        .search-bar {
+        .search-box {
             position: relative;
             flex-grow: 1;
         }
         
-        .search-bar input {
+        .search-box input {
             width: 100%;
             padding: 10px 15px 10px 40px;
             border: 1px solid var(--gray);
             border-radius: 5px;
         }
         
-        .search-bar i {
+        .search-box i {
             position: absolute;
             left: 15px;
             top: 50%;
@@ -140,3 +141,4 @@
             background-color: var(--primary);
             color: white;
         }
+    }
