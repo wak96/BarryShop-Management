@@ -288,6 +288,11 @@
             color: var(--secondary);
         }
 
+        .signup_link {
+            text-align : center;
+            padding: 30px;
+        }
+
         @media (max-width: 768px) {
             .login-container {
                 flex-direction: column;
@@ -347,7 +352,8 @@
                 <p>Enter your credentials to access your dashboard</p>
             </div>
             
-            <form class="login-form">
+            <form class="login-form" method="POST">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
@@ -357,7 +363,6 @@
                     <label for="password">Password</label>
                     <div class="password-container">
                         <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-                        <span class="password-toggle">👁️</span>
                     </div>
                 </div>
                 
@@ -366,7 +371,7 @@
                         <input type="checkbox" id="remember">
                         <label for="remember">Remember me</label>
                     </div>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <a href="{% url 'forget' %}" class="forgot-password">Forgot Password?</a>
                 </div>
                 
                 <button type="submit" class="btn">Sign In</button>
@@ -375,36 +380,19 @@
                     <h3>Demo Accounts (for testing):</h3>
                     <div class="demo-account">
                         <span class="account-role">Admin</span>
-                        <span class="account-details">admin@barryshop.com / admin123</span>
+                        <span class="account-details">admin@barryshop.com/admin123</span>
                     </div>
                     <div class="demo-account">
                         <span class="account-role">Manager</span>
-                        <span class="account-details">manager@barryshop.com / manager123</span>
+                        <span class="account-details">manager@barryshop.com/manager123</span>
                     </div>
+                </div>
+                <div class="signup_link">
+                    Need an account? <a href="{% url 'register' %}">Create one</a>
                 </div>
             </form>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Password toggle functionality
-            const passwordToggles = document.querySelectorAll('.password-toggle');
-            
-            passwordToggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    const input = this.parentElement.querySelector('input');
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                        this.textContent = '🙈';
-                    } else {
-                        input.type = 'password';
-                        this.textContent = '👁️';
-                    }
-                });
-            });
-        });
-    </script>
 
 </body>
 </html>
