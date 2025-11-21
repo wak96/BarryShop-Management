@@ -258,63 +258,70 @@
             </div>
             <h1>Create Your Account</h1>
             <p>Join BarryShop and manage your business efficiently</p>
+
+            <div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <center>
+                            <h4 style="color: {% if message.tags == 'error' %}red{% else %}dodgerblue{% endif %};">
+                                {{ message }}
+                            </h4>
+                        </center>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
         </div>
 
         <div class="register-content">
-            <form class="register-form">
+            <form class="register-form" method="POST" action="">
+
+                {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" class="form-control" placeholder="First name" required>
+                        <input type="text" name="firstName" class="form-control" placeholder="First name" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" class="form-control" placeholder="Last name" required>
+                        <input type="text" name="lastName" class="form-control" placeholder="Last name" required>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                    <input type="email" name="email" class="form-control" placeholder="your@email.com" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="+(880) 1234-567896" required>
+                    <input type="tel" name="phone" class="form-control" placeholder="+(880) 1234-567896" required>
                 </div>
-                
-                <div class="form-group">
-                    <label for="businessName">Business Name</label>
-                    <input type="text" id="businessName" class="form-control" placeholder="Your business name" required>
-                </div>
-
-                
+              
                 <div class="form-group">
                     <label for="password">Password</label>
                     <div class="password-container">
-                        <input type="password" id="password" class="form-control" placeholder="Create strong password" required>
-                        <span class="password-toggle">👁️</span>
+                        <input type="password" name="password" class="form-control" placeholder="Create strong password" required>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
                     <div class="password-container">
-                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required>
-                        <span class="password-toggle">👁️</span>
+                        <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm password" required>
                     </div>
                 </div>
                 
                 <div class="terms-container">
-                    <input type="checkbox" id="terms" required>
+                    <input type="checkbox" name="terms" required>
                     <label for="terms">
                         I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
                     </label>
                 </div>
                 
                 <div class="terms-container">
-                    <input type="checkbox" id="newsletter">
+                    <input type="checkbox" name="newsletter">
                     <label for="newsletter">
                         Send me product updates and business insights
                     </label>
@@ -328,25 +335,5 @@
             </form>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Password toggle functionality
-            const passwordToggles = document.querySelectorAll('.password-toggle');
-            
-            passwordToggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    const input = this.parentElement.querySelector('input');
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                        this.textContent = '🙈';
-                    } else {
-                        input.type = 'password';
-                        this.textContent = '👁️';
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
