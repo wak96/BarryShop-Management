@@ -9,6 +9,19 @@ from django.conf import settings
 # Create your views here.
 
 def loginView(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request=request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid Email Address or Password')
+            return redirect("login")
+
+
     return render(request, 'authentication/BarryShop_login.html')
 
 def RegisterView(request):
@@ -16,8 +29,8 @@ def RegisterView(request):
     if request.method == 'POST':
         first_name = request.POST.get('firstName')
         last_name = request.POST.get('lastName')
-        email = request.POST.get('email')
-        username = request.POST.get('phone')
+        phone = request.POST.get('phone')
+        username = request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirmPassword')
 
@@ -25,10 +38,10 @@ def RegisterView(request):
 
         if User.objects.filter(username=username).exists():
             user_has_error = True
-            messages.error(request, "Phone Number are exists")
-        if User.objects.filter(email=email).exists():
-            user_has_error = True
             messages.error(request, "Email Address are exists")
+        if User.objects.filter(email=phone).exists():
+            user_has_error = True
+            messages.error(request, "phone Number are exists")
 
         if len(password) < 5:
             user_has_error = True
@@ -42,8 +55,8 @@ def RegisterView(request):
                 username= username,
                 first_name = first_name,
                 last_name = last_name,
-                email = email,
-                password = password,
+                email = username,
+                password = password
             )
             messages.success(request, 'Account created, LogIn Now...!')
             return redirect('messages')
@@ -59,6 +72,19 @@ def message(request):
 
 def Forget(request):
     return render(request, 'authentication/BarryShop_forget1.html')
+
+
+def terms(request):
+    return render(request, 'Terms_and _conditions.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def about(request):
+    return render(request, 'About.html')
+
+def priceing(request):
+    return render(request, 'priceing.html')
 
 
 
