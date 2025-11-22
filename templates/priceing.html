@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - BarryShop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+        
+        
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        header p {
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+        
+        .pricing-content {
+            padding: 50px 40px;
+        }
+        
+        .pricing-intro {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-intro h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+        
+        .pricing-intro p {
+            color: #555;
+            font-size: 18px;
+        }
+        
+        .billing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .toggle-label {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #3498db;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+        
+        .discount-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #e8e8e8;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.popular {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3498db;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .plan-description {
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+        
+        .plan-price {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .price-amount {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .price-period {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        .price-note {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .plan-features {
+            margin-bottom: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .feature-icon {
+            color: #27ae60;
+            font-size: 18px;
+        }
+        
+        .feature-text {
+            color: #555;
+        }
+        
+        .feature-disabled {
+            color: #bdc3c7;
+        }
+        
+        .feature-disabled .feature-icon {
+            color: #bdc3c7;
+        }
+        
+        .plan-button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            text-align: center;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .plan-button:hover {
+            background: #2980b9;
+        }
+        
+        .plan-button.secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+        
+        .plan-button.secondary:hover {
+            background: #d5dbdb;
+        }
+        
+        .faq-section {
+            margin-top: 60px;
+        }
+        
+        .faq-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .faq-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        
+        .faq-item h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .faq-item p {
+            color: #555;
+        }
+        
+        .enterprise-section {
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .enterprise-section h2 {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        
+        .enterprise-section p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .enterprise-button {
+            display: inline-block;
+            padding: 14px 30px;
+            background: white;
+            color: #3498db;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .enterprise-button:hover {
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #4a6278;
+            color: #bdc3c7;
+            font-size: 15px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-content {
+                padding: 30px 20px;
+            }
+            
+            header {
+                padding: 40px 20px;
+            }
+            
+            
+            header h1 {
+                font-size: 26px;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .billing-toggle {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Choose the perfect plan for your business. All plans include a 14-day free trial.</p>
+        </header>
+
+        <div class="pricing-content">
+            <div class="pricing-intro">
+                <h2>Find the Right Plan</h2>
+                <p>Scale from a single store to enterprise-level inventory management with our flexible pricing options.</p>
+                
+                <div class="billing-toggle">
+                    <span class="toggle-label">Monthly Billing</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="billingToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="toggle-label">Annual Billing <span class="discount-badge">Save 20%</span></span>
+                </div>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3 class="plan-name">Starter</h3>
+                    <p class="plan-description">Perfect for small businesses just getting started with inventory management</p>
+                    
+                    <div class="plan-price">
+                        <div class="price-amount" id="starterPrice">$29</div>
+                        <div class="price-period" id="starterPeriod">per month</div>
+                        <div class="price-note">billed monthly</div>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Up to 100 products</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Basic barcode scanning</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Inventory tracking</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Email support</span>
+                        </div>
+                        <div class="feature-item feature-disabled">
+                            <span class="feature-icon">✗</span>
+                            <span class="feature-text">Advanced analytics</span>
+                        </div>
+                        <div class="feature-item feature-disabled">
+                            <span class="feature-icon">✗</span>
+                            <span class="feature-text">Multi-store management</span>
+                        </div>
+                    </div>
+                    
+                    <button class="plan-button secondary">Start Free Trial</button>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3 class="plan-name">Professional</h3>
+                    <p class="plan-description">Ideal for growing businesses with multiple locations and advanced needs</p>
+                    
+                    <div class="plan-price">
+                        <div class="price-amount" id="proPrice">$79</div>
+                        <div class="price-period" id="proPeriod">per month</div>
+                        <div class="price-note">billed monthly</div>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Up to 1,000 products</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Advanced barcode scanning</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Real-time inventory tracking</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Priority email & chat support</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Advanced analytics & reports</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Multi-store management</span>
+                        </div>
+                    </div>
+                    
+                    <button class="plan-button">Start Free Trial</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <p class="plan-description">For large businesses with complex inventory needs and custom requirements</p>
+                    
+                    <div class="plan-price">
+                        <div class="price-amount" id="enterprisePrice">$199</div>
+                        <div class="price-period" id="enterprisePeriod">per month</div>
+                        <div class="price-note">billed monthly</div>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Unlimited products</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Custom barcode solutions</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Advanced automation</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">24/7 phone support</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Custom reporting & API access</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Dedicated account manager</span>
+                        </div>
+                    </div>
+                    
+                    <button class="plan-button secondary">Start Free Trial</button>
+                </div>
+            </div>
+            
+            <div class="enterprise-section">
+                <h2>Need a Custom Solution?</h2>
+                <p>We offer tailored enterprise plans for businesses with unique requirements, high-volume transactions, or specialized integrations.</p>
+                <button class="enterprise-button">Contact Sales</button>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Can I change plans later?</h3>
+                        <p>Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately with prorated billing.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Is there a setup fee?</h3>
+                        <p>No, there are no setup fees for any of our plans. You only pay the monthly subscription cost.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What payment methods do you accept?</h3>
+                        <p>We accept all major credit cards, PayPal, and for annual plans we can also process bank transfers.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Do you offer discounts for nonprofits?</h3>
+                        <p>Yes, we offer a 25% discount for registered nonprofit organizations. Contact our sales team for details.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I cancel anytime?</h3>
+                        <p>Yes, you can cancel your subscription at any time with no cancellation fees.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Is my data secure?</h3>
+                        <p>Absolutely. We use enterprise-grade security with encryption, regular backups, and secure data centers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <center>
+                <a href="{{ request.META.HTTP_REFERER }}" class="back-btn">Go Back to Previous Page</a>
+            </center>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-links">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'home' %}">Home</a>
+                    {% else %}
+                        <a href="{% url 'login' %}">Home</a>
+                    {% endif %}
+                    <a href="{% url 'about' %}">About Us</a>
+                    <a href="{% url 'contact' %}">Contact</a>
+                    <a href="{% url 'terms' %}">Privacy Policy</a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2023 BarryShop. All rights reserved. | Revolutionizing Inventory Management</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('billingToggle').addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const monthlyPrices = [29, 79, 199];
+            const annualPrices = [23, 63, 159]; // 20% discount
+            
+            const plans = ['starter', 'pro', 'enterprise'];
+            
+            plans.forEach((plan, index) => {
+                const priceElement = document.getElementById(`${plan}Price`);
+                const periodElement = document.getElementById(`${plan}Period`);
+                
+                if (isAnnual) {
+                    priceElement.textContent = `$${annualPrices[index]}`;
+                    periodElement.textContent = 'per month';
+                    document.querySelector('.price-note').textContent = 'billed annually';
+                } else {
+                    priceElement.textContent = `$${monthlyPrices[index]}`;
+                    periodElement.textContent = 'per month';
+                    document.querySelector('.price-note').textContent = 'billed monthly';
+                }
+            });
+        });
+        
+        // Add click handlers for plan buttons
+        document.querySelectorAll('.plan-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const planName = this.closest('.pricing-card').querySelector('.plan-name').textContent;
+                alert(`Thank you for your interest in the ${planName} plan! You will be redirected to the signup page.`);
+            });
+        });
+        
+        document.querySelector('.enterprise-button').addEventListener('click', function() {
+            alert('Our sales team will contact you shortly to discuss your custom requirements.');
+        });
+    </script>
+</body>
+</html>
