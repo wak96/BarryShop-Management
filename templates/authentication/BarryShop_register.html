@@ -294,10 +294,6 @@
                     <input type="email" name="email" class="form-control" placeholder="your@email.com" required>
                 </div>
                 
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" name="phone" class="form-control" placeholder="+(880) 1234-567896" required>
-                </div>
               
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -316,7 +312,7 @@
                 <div class="terms-container">
                     <input type="checkbox" name="terms" required>
                     <label for="terms">
-                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        I agree to the <a href="{% url 'terms' %}">Terms of Service and Privacy Policy</a>
                     </label>
                 </div>
                 
@@ -330,7 +326,7 @@
                 <button type="submit" class="btn">Create Account</button>
                 
                 <div class="login-link">
-                    Already have an account? <a href="login.html">Sign in here</a>
+                    Already have an account? <a href="{% url 'login' %}">Sign in here</a>
                 </div>
             </form>
         </div>
