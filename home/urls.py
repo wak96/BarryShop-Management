@@ -6,6 +6,10 @@ urlpatterns = [
     path('register/', views.RegisterView, name='register'),
     path('forget/', views.Forget, name='forget'),
     path('messages/', views.message, name='messages'),
+    path('terms/', views.terms, name='terms'),
+    path('contact/', views.contact, name='contact'),
+    path('about/', views.about, name='about'),
+    path('priceing/', views.priceing, name='priceing'),
 
     path('home/', views.home, name='home'),
     path('settings/', views.settings, name='settings'),
